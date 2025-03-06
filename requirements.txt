@@ -1,0 +1,10 @@
+streamlit
+pandas
+scikit-learn
+sentence-transformers
+spacy
+yake
+transformers
+torch
+pickle-mixin
+
