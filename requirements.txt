@@ -3,6 +3,8 @@ pandas
 scikit-learn
 sentence-transformers
 spacy
+spacy[transformers]
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz
 yake
 transformers
 torch
