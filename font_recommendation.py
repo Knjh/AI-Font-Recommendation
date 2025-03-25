@@ -22,19 +22,25 @@ st.markdown("""
 # Cache Model Loading to Avoid Repeated Reloads
 @st.cache_resource
 def load_models():
-    model = SentenceTransformer('all-mpnet-base-v2')
-    sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")
-    emotion_pipeline = pipeline("text-classification", model="SamLowe/roberta-base-go_emotions", top_k=1)
-    
-    # Ensure 'en_core_web_sm' is downloaded
+    from sentence_transformers import SentenceTransformer
+    from transformers import pipeline
+    import spacy.cli
+
+    # Ensure spaCy model is downloaded
     try:
         nlp = spacy.load("en_core_web_sm")
     except OSError:
+        st.warning("Downloading spaCy model...")
         subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
         nlp = spacy.load("en_core_web_sm")
-    
+
+    model = SentenceTransformer('all-mpnet-base-v2')
+    sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")
+    emotion_pipeline = pipeline("text-classification", model="SamLowe/roberta-base-go_emotions", top_k=1)
+
     return model, sentiment_pipeline, emotion_pipeline, nlp
 
+# Load models
 model, sentiment_pipeline, emotion_pipeline, nlp = load_models()
 
 # Cache Embeddings to Prevent Repeated Loading
