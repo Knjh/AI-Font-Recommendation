@@ -1,12 +1,14 @@
-streamlit
+numpy==1.23.5
+spacy==3.5.3
+thinc==8.1.10
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+streamlit==1.30.0
 pandas
 scikit-learn
 sentence-transformers
-spacy
-spacy[transformers]
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz
 yake
 transformers
-torch
 pickle-mixin
 
