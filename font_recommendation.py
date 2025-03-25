@@ -6,8 +6,9 @@ from sentence_transformers import SentenceTransformer
 import spacy
 import yake
 from transformers import pipeline
+import subprocess
 
-#Theme Toggle
+# Theme Toggle
 st.set_page_config(page_title="Font Recommender", page_icon="🎨", layout="wide")
 st.markdown("""
     <style>
@@ -24,7 +25,14 @@ def load_models():
     model = SentenceTransformer('all-mpnet-base-v2')
     sentiment_pipeline = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")
     emotion_pipeline = pipeline("text-classification", model="SamLowe/roberta-base-go_emotions", top_k=1)
-    nlp = spacy.load("en_core_web_sm")
+    
+    # Ensure 'en_core_web_sm' is downloaded
+    try:
+        nlp = spacy.load("en_core_web_sm")
+    except OSError:
+        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+        nlp = spacy.load("en_core_web_sm")
+    
     return model, sentiment_pipeline, emotion_pipeline, nlp
 
 model, sentiment_pipeline, emotion_pipeline, nlp = load_models()
@@ -98,8 +106,8 @@ if section == "Project Description":
     This Font Recommender System suggests fonts based on user-input text. It analyzes the sentiment, emotion, and keywords in the text and matches them to fonts using cosine similarity.
 
     ### Data Collection & Preprocessing
-    - Google Font dataset is used which is available on githib 
-    - Preprocessed the dataset to find out the important features and metadata against fonts to create a tag
+    - Google Font dataset is used which is available on GitHub.
+    - Preprocessed the dataset to find out the important features and metadata against fonts to create tags.
     - Tags are merged into a single column for similarity computation.
     
     ### Models Used
@@ -132,7 +140,7 @@ if section == "Font Recommender":
             st.subheader("📌 Recommended Fonts:")
             for font in recommended_fonts:
                 font_url = f"https://fonts.google.com/specimen/{font.replace(' ', '+')}"
-                st.markdown(f"- **{font}** [🔗Link]({font_url})", unsafe_allow_html=True)
+                st.markdown(f"- **{font}** [📎Link]({font_url})", unsafe_allow_html=True)
         else:
             st.warning("⚠️ Please enter some text to get recommendations.")
 
@@ -142,6 +150,6 @@ if section == "Contact":
     st.markdown("""
     **About Me:**
     - 🎓 Data Scientist | NLP Enthusiast
-    - 💻 Passionate about Data Scienece, AI and ML-based applications
-    - 📧 Contact: knj9304@gmail.com
+    - 💻 Passionate about Data Science, AI, and ML-based applications
+    - 📞 Contact: knj9304@gmail.com
     """)
