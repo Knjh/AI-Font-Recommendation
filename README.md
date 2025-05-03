@@ -22,6 +22,12 @@ This system leverages **Natural Language Processing (NLP)** and **Machine Learni
 ✅ Direct links to Google Fonts for **easy access**  
 ✅ Responsive **Streamlit UI** with dark/light mode  
 
+## 🖼️ Demo Screenshot
+
+Here’s a glimpse of the AI-powered font recommender in action:
+
+![Font Recommender UI](ui_image)
+
 ## 🖥️ Installation & Setup
 Clone the repository and install dependencies:
 
