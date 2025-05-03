@@ -26,7 +26,7 @@ This system leverages **Natural Language Processing (NLP)** and **Machine Learni
 
 Here’s a glimpse of the AI-powered font recommender in action:
 
-![Font Recommender UI](ui_image.png)
+![Font Recommender UI](ui_imge.png)
 
 ## 🖥️ Installation & Setup
 Clone the repository and install dependencies:
